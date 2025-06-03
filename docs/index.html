@@ -1,27 +1,98 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Police Support Chat</title>
-
-  <!-- 1. Feuille de style -->
-  <link rel="stylesheet" href="css/styles.css">
-
-  <!-- 2. Librairies tierces (CDN) -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js" defer></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Police Support Chat</title>
+    
+    <!-- Firebase -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-database-compat.js"></script>
+    
+    <!-- Font Awesome pour les icônes -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Votre CSS -->
+    <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-  <!-- === Votre markup HTML (sidebar, chat, modales, etc.) === -->
-  <!-- *** prenez exactement celui que vous aviez dans CodePen,
-       mais supprimez les balises <style> et <script>. *** -->
-
-  <!-- 3. Config Firebase (toujours AVANT app.js) -->
-  <script src="js/config.js"></script>
-
-  <!-- 4. Application -->
-  <script src="js/app.js"></script>
+    <!-- ============================================= -->
+    <!-- COPIEZ ICI TOUT LE CONTENU DU <body> DE CODEPEN -->
+    <!-- ============================================= -->
+    
+    <div id="app">
+        <!-- Sidebar avec les canaux -->
+        <div class="sidebar">
+            <div class="server-header">
+                <h2><i class="fas fa-shield-alt"></i> Police Support</h2>
+            </div>
+            
+            <div class="channels-section">
+                <div class="section-header">
+                    <span>CANAUX</span>
+                </div>
+                <div id="channels-list">
+                    <!-- Les canaux seront ajoutés dynamiquement -->
+                </div>
+            </div>
+            
+            <div class="user-section">
+                <div id="current-user">
+                    <!-- Info utilisateur -->
+                </div>
+            </div>
+        </div>
+        
+        <!-- Zone de chat principale -->
+        <div class="main-content">
+            <div class="channel-header">
+                <h3 id="channel-name"># Sélectionnez un canal</h3>
+            </div>
+            
+            <div class="messages-container" id="messages-container">
+                <!-- Les messages apparaîtront ici -->
+            </div>
+            
+            <div class="message-input-container">
+                <button id="location-button" class="location-btn" title="Envoyer ma position" style="display: none;">
+                    <i class="fas fa-map-marker-alt"></i>
+                </button>
+                <input type="text" id="message-input" placeholder="Envoyer un message..." disabled>
+                <button id="send-button" disabled><i class="fas fa-paper-plane"></i></button>
+            </div>
+        </div>
+        
+        <!-- Modal de connexion -->
+        <div id="login-modal" class="modal">
+            <div class="modal-content">
+                <h2>Connexion</h2>
+                <input type="text" id="username" placeholder="Nom d'utilisateur">
+                <select id="user-type">
+                    <option value="police">Policier</option>
+                    <option value="victim">Victime</option>
+                </select>
+                <button id="login-button">Se connecter</button>
+            </div>
+        </div>
+        
+        <!-- Modal de déconnexion forcée -->
+        <div id="disconnect-modal" class="disconnect-modal">
+            <div class="disconnect-modal-content">
+                <h2>Canal supprimé</h2>
+                <p>Votre canal a été supprimé par la police. Vous allez être déconnecté.</p>
+                <button onclick="location.reload()">OK</button>
+            </div>
+        </div>
+    </div>
+    
+    <!-- ============================================= -->
+    <!-- SCRIPTS À LA FIN (avant </body>) -->
+    <!-- ============================================= -->
+    
+    <!-- Configuration Firebase -->
+    <script src="js/config.js"></script>
+    
+    <!-- Application principale -->
+    <script src="js/app.js"></script>
 </body>
 </html>
